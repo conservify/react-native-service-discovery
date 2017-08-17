@@ -1,0 +1,37 @@
+{
+  "name": "react-native-service-discovery",
+  "version": "0.0.1",
+  "description": "",
+  "main": "ServiceDiscovery.js",
+  "scripts": {
+    "start": "exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Conservify/react-native-service-discovery"
+  },
+  "keywords": [
+    "react-component",
+    "reactnative",
+    "react-native",
+    "net",
+    "ios",
+    "android"
+  ],
+  "author": {
+    "name": "Jacob Lewallen",
+    "email": "jlewallen@gmail.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.40.0"
+  },
+  "dependencies": {
+    "events": "^1.0.2",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint-plugin-react": "^3.11.3"
+  }
+}
