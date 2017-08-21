@@ -9,6 +9,7 @@ public class ServiceDiscovery extends ReactContextBaseJavaModule {
     private static final String LOG_TAG = "ServiceDiscovery";
 
     private final ReactApplicationContext reactContext;
+    private boolean running;
     private JmDnsDiscovery jmDnsDiscovery;
     private UdpDiscovery udpDiscovery;
 
@@ -26,18 +27,24 @@ public class ServiceDiscovery extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void start() {
-        Log.i(LOG_TAG, "Starting...");
-        jmDnsDiscovery.start();
-        udpDiscovery.start();
+        if (!running) {
+            Log.i(LOG_TAG, "Starting...");
+            jmDnsDiscovery.start();
+            udpDiscovery.start();
+            running = true;
+        }
     }
 
     @ReactMethod
     public void stop() {
-        Log.i(LOG_TAG, "Stopping...");
-        jmDnsDiscovery.stop();
-        udpDiscovery.stop();
-        jmDnsDiscovery.join();
-        udpDiscovery.join();
-        Log.i(LOG_TAG, "Stopped");
+        if (running) {
+            Log.i(LOG_TAG, "Stopping...");
+            jmDnsDiscovery.stop();
+            udpDiscovery.stop();
+            jmDnsDiscovery.join();
+            udpDiscovery.join();
+            Log.i(LOG_TAG, "Stopped");
+            running = false;
+        }
     }
 }
