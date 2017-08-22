@@ -37,7 +37,7 @@ public class UdpDiscovery implements Runnable {
     public void run() {
         try {
             DatagramSocket socket = new DatagramSocket(PORT, InetAddress.getByName("0.0.0.0"));
-            socket.setSoTimeout(1000);
+            socket.setSoTimeout(2000);
             socket.setBroadcast(true);
 
             DatagramPacket packet = new DatagramPacket(new byte[1], 1);
