@@ -59,7 +59,7 @@ public class JmDnsDiscovery implements Runnable, ServiceListener {
             jmdnsDefault.addServiceListener(SERVICE_TYPE, this);
 
             while (running) {
-                Thread.sleep( 1000L);
+                Thread.sleep(1000L);
             }
 
             Log.i(LOG_TAG, "Closing...");
