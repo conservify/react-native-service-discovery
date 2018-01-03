@@ -27,13 +27,13 @@ public class ServiceDiscovery extends ReactContextBaseJavaModule implements Life
     }
 
     @ReactMethod
-    public void start() {
+    public void start(int udpPort) {
         if (!running) {
             Log.i(LOG_TAG, "Starting...");
             if (jmDnsEnabled) {
                 jmDnsDiscovery.start();
             }
-            udpDiscovery.start();
+            udpDiscovery.start(udpPort);
             running = true;
         }
     }

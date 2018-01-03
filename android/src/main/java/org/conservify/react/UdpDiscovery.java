@@ -12,22 +12,23 @@ import java.net.*;
 
 public class UdpDiscovery implements Runnable {
     private static final String LOG_TAG = "NSD_UDP";
-    private static final int PORT = 12344;
 
     private final ReactApplicationContext reactContext;
     private final Context applicationContext;
 
     private boolean running;
     private Thread thread;
+    private int port;
 
     public UdpDiscovery(ReactApplicationContext reactContext) {
         this.reactContext = reactContext;
         this.applicationContext = reactContext.getApplicationContext();
     }
 
-    public void start() {
+    public void start(int port) {
         Log.i(LOG_TAG, "Starting...");
 
+        this.port = port;
         this.running = true;
         this.thread = new Thread(this);
         this.thread.start();
@@ -36,13 +37,13 @@ public class UdpDiscovery implements Runnable {
     @Override
     public void run() {
         try {
-            DatagramSocket socket = new DatagramSocket(PORT, InetAddress.getByName("0.0.0.0"));
+            DatagramSocket socket = new DatagramSocket(port, InetAddress.getByName("0.0.0.0"));
             socket.setSoTimeout(2000);
             socket.setBroadcast(true);
 
             DatagramPacket packet = new DatagramPacket(new byte[1], 1);
 
-            Log.i(LOG_TAG, String.format("Listening on %d...", PORT));
+            Log.i(LOG_TAG, String.format("Listening on %d...", port));
 
             while (running) {
                 try {

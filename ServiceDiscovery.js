@@ -24,9 +24,9 @@ function ServiceDiscovery() {
 
 util.inherits(ServiceDiscovery, EventEmitter);
 
-ServiceDiscovery.prototype.start = function() {
+ServiceDiscovery.prototype.start = function(udpPort) {
     this._registerEvents();
-    Native.start();
+    Native.start(udpPort);
 };
 
 ServiceDiscovery.prototype.stop = function() {
